@@ -1,21 +1,18 @@
-# 🤖 AI Localization Copilot
+# AI Localization Copilot
 
-An AI-powered localization assistant designed for Product Managers and Localization Teams.
-
-This project demonstrates an AI-assisted localization workflow that translates Chinese UI text into English and Portuguese while providing AI-generated translation explanations.
-
----
+An AI-powered localization assistant built with Next.js and React.
 
 ## ✨ Features
 
-- 🌍 Chinese → English Translation
-- 🇧🇷 Chinese → Portuguese Translation
-- 🤖 AI Translation Explanation
+- 🌍 Chinese → English translation
+- 🇧🇷 Chinese → Portuguese translation
 - 📋 One-click Copy
-- 🌙 Modern Dark UI
-- ⚡ Responsive Layout
+- 🤖 AI Explanation panel
+- 💻 Responsive UI
 
----
+## 📸 Project Preview
+
+![AI Localization Copilot](public/images/images.jpg)
 
 ## 🛠 Tech Stack
 
@@ -24,26 +21,25 @@ This project demonstrates an AI-assisted localization workflow that translates C
 - TypeScript
 - Tailwind CSS
 
----
+## 🚀 Getting Started
 
-## 📸 Project Preview
+```bash
+npm install
+npm run dev
+```
 
-> Screenshot coming soon.
+Open:
 
----
+http://localhost:3000
 
-## 🚀 Future Roadmap
+## Future Roadmap
 
 - OpenAI API Integration
-- Multi-language Translation
+- Streaming Response
 - Translation History
-- Export Results
-- Prompt Optimization
+- Export to CSV
+- Multi-language Support
 
 ---
 
-## 👩‍💻 Author
-
-**Xingxing Wang**
-
-Product Manager | AI Product | Localization
+Created by Xingxing Wang
