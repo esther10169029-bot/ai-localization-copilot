@@ -10,34 +10,45 @@ export default function LocalizationCopilot() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [copied, setCopied] = useState<"english" | "portuguese" | "">("");
-
-  const handleTranslate = () => {
+  const [feedback, setFeedback] = useState<"helpful" | "not-helpful" | "">("");
+  const handleTranslate = async () => {
     if (!sourceText.trim()) {
       setMessage("Please enter text before translating.");
       return;
     }
-
+  
     setMessage("");
     setLoading(true);
-
-    setTimeout(() => {
-      setEnglish("E104 fault. Please check the input voltage.");
-      setPortuguese("Falha E104. Verifique a tensão de entrada.");
-      setExplanation(
-        'This translation uses standard inverter maintenance terminology. "Input voltage" is commonly used in technical support and repair documentation.'
-      );
+    setEnglish("");
+    setPortuguese("");
+    setExplanation("");
+  
+    try {
+      const response = await fetch("/api/translate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          text: sourceText,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.error || "Translation failed");
+      }
+  
+      setEnglish(data.english);
+      setPortuguese(data.portuguese);
+      setExplanation(data.explanation);
+    } catch (error) {
+      console.error(error);
+      setMessage("Translation failed. Please try again.");
+    } finally {
       setLoading(false);
-    }, 1000);
-  };
-  const handleCopy = async (text: string, type: "english" | "portuguese") => {
-    if (!text) return;
-  
-    await navigator.clipboard.writeText(text);
-    setCopied(type);
-  
-    setTimeout(() => {
-      setCopied("");
-    }, 2000);
+    }
   };
   return (
     <main className="min-h-screen bg-[#070A18] text-white">
